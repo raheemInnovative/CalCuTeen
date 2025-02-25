@@ -34,19 +34,9 @@
     <link rel="canonical" href="https://raheeminnovative.github.io/CalCuTeen/">
 
     <!-- Stylesheet -->
-    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="style.css">
     <style>
         body {
-            @media (max-width: 768px) {
-                body {
-                    font-size: 14px;
-                }
-                .container {
-                    width: 100%;
-                    padding: 10px;
-                }
-        }
-
             font-family: Arial, sans-serif;
             background: linear-gradient(135deg, #1a1a2e, #16213e);
             color: white;
@@ -190,6 +180,93 @@
                 opacity: 1;
             }
         }
+
+        /* Responsive Design */
+        @media (max-width: 1024px) {
+
+            .calculator-container,
+            .history-container {
+                width: 100%;
+                /* Full width on smaller screens */
+                padding: 15px;
+            }
+
+            .buttons {
+                grid-template-columns: repeat(4, 1fr);
+                /* Reduce columns for better spacing */
+                gap: 8px;
+            }
+
+            .display {
+                font-size: 1.8rem;
+                /* Adjust display size */
+                padding: 8px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            body {
+                flex-direction: column;
+                /* Stack containers vertically */
+                height: auto;
+            }
+
+            .calculator-container,
+            .history-container {
+                width: 90%;
+                /* Keep space around */
+                margin: auto;
+            }
+
+            .buttons {
+                grid-template-columns: repeat(3, 1fr);
+                /* Adjust for mobile */
+                gap: 5px;
+            }
+
+            button {
+                padding: 12px;
+                font-size: 1rem;
+            }
+
+            .display {
+                font-size: 1.5rem;
+                padding: 6px;
+            }
+
+            .title {
+                font-size: 1.8rem;
+            }
+
+            .quote {
+                font-size: 1.2rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .buttons {
+                grid-template-columns: repeat(2, 1fr);
+                /* Two columns for very small screens */
+            }
+
+            button {
+                padding: 10px;
+                font-size: 0.9rem;
+            }
+
+            .display {
+                font-size: 1.2rem;
+                padding: 5px;
+            }
+
+            .title {
+                font-size: 1.5rem;
+            }
+
+            .quote {
+                font-size: 1rem;
+            }
+        }
     </style>
 </head>
 
@@ -290,5 +367,4 @@
 
 <script defer src="script.js"></script>
 </body>
-
 </html>
