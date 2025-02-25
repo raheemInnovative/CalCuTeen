@@ -181,53 +181,119 @@
             }
         }
 
-        /* Responsive Design */
-        body {
-            transform: scale(0.95%);
-            /* Adjust to 95% */
-            transform-origin: top;
+        /* General Reset */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
         }
 
+        /* Body */
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #0b0d2c;
+            color: white;
+            text-align: center;
+        }
 
-        /* Tablets and small desktops (1024px and below) */
+        /* Main Title */
+        .title {
+            font-size: 2.5rem;
+            font-weight: bold;
+            text-shadow: 2px 2px 5px yellow;
+            margin: 20px 0;
+        }
+
+        /* Calculator & History Containers */
+        .calculator-container {
+            width: 60%;
+            display: inline-block;
+            vertical-align: top;
+        }
+
+        .history-container {
+            width: 35%;
+            display: inline-block;
+            vertical-align: top;
+            margin-left: 20px;
+            /* Space between calculator and history */
+            background: rgba(0, 0, 0, 0.3);
+            padding: 10px;
+            border-radius: 8px;
+        }
+
+        /* Display */
+        .display {
+            width: 100%;
+            padding: 15px;
+            font-size: 2rem;
+            background: #444;
+            color: white;
+            text-align: right;
+            border-radius: 5px;
+            margin-bottom: 10px;
+        }
+
+        /* Buttons */
+        .buttons {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 8px;
+        }
+
+        button {
+            padding: 15px;
+            font-size: 1.2rem;
+            border-radius: 5px;
+            border: none;
+            cursor: pointer;
+            background: #26283b;
+            color: white;
+            transition: 0.2s;
+        }
+
+        button:hover {
+            background: #3a3d5a;
+        }
+
+        /* Tablets and small desktops (max-width: 1024px) */
         @media (max-width: 1024px) {
+            .calculator-container {
+                width: 70%;
+            }
 
-            .calculator-container,
             .history-container {
-                width: 100%;
-                padding: 10px;
-                margin-top: 20px;
-                order: 2;
+                width: 28%;
+                margin-left: 10px;
             }
 
             .buttons {
                 grid-template-columns: repeat(4, 1fr);
-                gap: 5px;
+                gap: 6px;
             }
 
             .display {
                 font-size: 1.8rem;
-                padding: 8px;
+                padding: 10px;
             }
         }
 
-        /* Large mobile screens and small tablets (768px and below) */
+        /* Large mobile screens and small tablets (max-width: 768px) */
         @media (max-width: 768px) {
-            body {
-                flex-direction: column;
-                height: auto;
-            }
 
             .calculator-container,
             .history-container {
                 width: 100%;
-                padding: 10px;
+                display: block;
                 margin: auto;
+            }
+
+            .history-container {
+                margin-top: 20px;
             }
 
             .buttons {
                 grid-template-columns: repeat(4, 1fr);
-                /* Fix: Keep 4 columns */
                 gap: 5px;
             }
 
@@ -238,54 +304,61 @@
 
             .display {
                 font-size: 1.5rem;
-                padding: 6px;
+                padding: 8px;
             }
 
             .title {
-                font-size: 1.8rem;
-            }
-
-            .quote {
-                font-size: 1.2rem;
+                font-size: 2rem;
             }
         }
 
-        /* Small mobile screens (480px and below) */
+
         @media (max-width: 480px) {
-            .buttons {
-                grid-template-columns: repeat(4, minmax(50px, 1fr));
-                /* Fix: Ensure 4 columns */
-                gap: 5px;
-                width: 100%;
+            body {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
             }
 
             .calculator-container {
-                width: 100%;
-                padding: 10px;
+                width: 90%;
+                padding: 15px;
+                margin: auto;
             }
 
             .history-container {
-                display: block !important;
-                visibility: visible !important;
-                /* Hide history on very small screens for better layout */
+                width: 90%;
+                display: block;
+                margin: 20px auto;
+                padding: 10px;
+                text-align: center;
+                border-radius: 8px;
+                background: rgba(0, 0, 0, 0.3);
+            }
+
+            .buttons {
+                grid-template-columns: repeat(4, 1fr);
+                gap: 5px;
             }
 
             button {
-                padding: 10px;
+                padding: 12px;
                 font-size: 1.1rem;
+                border-radius: 5px;
             }
 
             .display {
-                font-size: 1.2rem;
-                padding: 5px;
+                font-size: 1.5rem;
+                padding: 10px;
+                border-radius: 5px;
+                text-align: right;
             }
 
             .title {
-                font-size: 1.5rem;
-            }
-
-            .quote {
-                font-size: 1rem;
+                font-size: 2rem;
+                text-align: center;
+                margin-bottom: 10px;
             }
         }
     </style>
