@@ -182,51 +182,51 @@
         }
 
         /* Responsive Design */
+
+        /* Tablets and small desktops (1024px and below) */
         @media (max-width: 1024px) {
 
             .calculator-container,
             .history-container {
                 width: 100%;
-                /* Full width on smaller screens */
-                padding: 15px;
+                padding: 10px;
             }
 
             .buttons {
                 grid-template-columns: repeat(4, 1fr);
-                /* Reduce columns for better spacing */
-                gap: 8px;
+                /* Ensure 4 columns */
+                gap: 5px;
             }
 
             .display {
                 font-size: 1.8rem;
-                /* Adjust display size */
                 padding: 8px;
             }
         }
 
+        /* Large mobile screens and small tablets (768px and below) */
         @media (max-width: 768px) {
             body {
                 flex-direction: column;
-                /* Stack containers vertically */
                 height: auto;
             }
 
             .calculator-container,
             .history-container {
-                width: 90%;
-                /* Keep space around */
+                width: 100%;
+                padding: 10px;
                 margin: auto;
             }
 
             .buttons {
-                grid-template-columns: repeat(3, 1fr);
-                /* Adjust for mobile */
+                grid-template-columns: repeat(4, 1fr);
+                /* Fix: Keep 4 columns */
                 gap: 5px;
             }
 
             button {
                 padding: 12px;
-                font-size: 1rem;
+                font-size: 1.1rem;
             }
 
             .display {
@@ -243,11 +243,23 @@
             }
         }
 
+        /* Small mobile screens (480px and below) */
         @media (max-width: 480px) {
             .buttons {
-                grid-template-columns: repeat(4, 1fr);
+                grid-template-columns: repeat(4, minmax(50px, 1fr));
+                /* Fix: Ensure 4 columns */
                 gap: 5px;
-                /* Two columns for very small screens */
+                width: 100%;
+            }
+
+            .calculator-container {
+                width: 100%;
+                padding: 10px;
+            }
+
+            .history-container {
+                display: none;
+                /* Hide history on very small screens for better layout */
             }
 
             button {
