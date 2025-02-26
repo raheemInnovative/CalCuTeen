@@ -35,6 +35,7 @@
 
     <!-- Stylesheet -->
     <link rel="stylesheet" href="style.css">
+    <link rel="manifest" href="manifest.json">
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -368,7 +369,7 @@
 
     <div class="calculator-container">
         <div class="title">CalCuTeen</div>
-        <div class="quote">"Turning numbers into realistic solutions"</div>
+        <div class="quote">"Turning numbers into solutions"</div>
         <br>
         <div class="display" id="display">0</div>
         <div class="buttons">
@@ -455,6 +456,19 @@
             }
         }
     </script>
+
+    <script>
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', () => {
+                navigator.serviceWorker.register('/service-worker.js').then((registration) => {
+                    console.log('Service Worker registered: ', registration);
+                }).catch((error) => {
+                    console.log('Service Worker registration failed: ', error);
+                });
+            });
+        }
+    </script>
+
 </body>
 
 </html>
