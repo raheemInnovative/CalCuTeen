@@ -415,25 +415,37 @@
         let display = document.getElementById("display");
         let history = document.getElementById("history");
 
+        // Clear display
         function clearDisplay() {
             display.innerText = "0";
         }
 
+        // Backspace functionality
         function backspace() {
             display.innerText = display.innerText.slice(0, -1) || "0";
         }
 
+        // Append values to the display
         function appendToDisplay(value) {
             if (display.innerText === "0" && value !== ".") {
                 display.innerText = "";
             }
+
+            // Prevent multiple decimal points
+            if (value === "." && display.innerText.includes(".")) {
+                return;
+            }
+
             display.innerText += value;
         }
 
+        // Factorial calculation
         function factorial(n) {
+            if (n < 0) return "Undefined"; // Negative numbers don't have factorials
             return n <= 1 ? 1 : n * factorial(n - 1);
         }
 
+        // Main calculation function
         function calculate() {
             try {
                 let expression = display.innerText
@@ -447,11 +459,17 @@
                     .replace(/\^/g, '**')
                     .replace(/(\d+)!/g, (_, n) => factorial(parseInt(n)));
 
+                // Handle invalid characters by using Function constructor safely
                 let result = Function(`return ${expression}`)();
 
+                if (result === undefined || isNaN(result)) {
+                    throw new Error("Invalid calculation");
+                }
+
+                // Store result in history
                 history.innerHTML = `<li>${display.innerText} = <b>${result}</b></li>` + history.innerHTML;
                 display.innerText = result;
-            } catch {
+            } catch (e) {
                 display.innerText = "Syntax Error";
             }
         }
@@ -477,3 +495,4 @@
 </body>
 
 </html>
+
