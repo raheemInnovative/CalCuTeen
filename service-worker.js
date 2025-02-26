@@ -1,5 +1,7 @@
+// The name of the cache
 const CACHE_NAME = 'calcuTeen-cache-v1';
 
+// Files to be cached
 const urlsToCache = [
   '/',
   '/index.html',
@@ -11,6 +13,7 @@ const urlsToCache = [
   '/sitemap.xml'
 ];
 
+// Install event - Cache the necessary files
 self.addEventListener('install', (event) => {
   event.waitUntil(
     caches.open(CACHE_NAME).then((cache) => {
@@ -20,15 +23,17 @@ self.addEventListener('install', (event) => {
   );
 });
 
+// Fetch event - Serve cached assets or fetch from the network if not cached
 self.addEventListener('fetch', (event) => {
   event.respondWith(
-    caches.match(event.request).then((cachedResponse) =>  
-      
+    caches.match(event.request).then((cachedResponse) => {
+      // Return the cached response if it exists, else fetch from the network
       return cachedResponse || fetch(event.request);
     })
   );
 });
 
+// Activate event - Clear out old caches and take control of the page immediately
 self.addEventListener('activate', (event) => {
   const cacheWhitelist = [CACHE_NAME];
   event.waitUntil(
@@ -36,10 +41,12 @@ self.addEventListener('activate', (event) => {
       return Promise.all(
         cacheNames.map((cacheName) => {
           if (!cacheWhitelist.includes(cacheName)) {
-            return caches.delete(cacheName);
+            return caches.delete(cacheName); // Delete outdated caches
           }
         })
       );
+    }).then(() => {
+      return self.clients.claim(); // Ensure the service worker takes control immediately
     })
   );
 });
